@@ -21,7 +21,7 @@ The dashboard is designed for **hosts**, **investors**, and **travelers** to mak
 | **Average Reviews / Month**   | 1.43        |
 
 **Highlights:**
-- 🏆 **New Orleans** slightly surpasses **Chicago** in total listings.  
+- 🏆 **Chicago** surpasses **New Orleans** in total listings. 
 - 🏠 **80%+** of listings are *entire homes/apartments*, showing strong preference for privacy.  
 - 💰 **Hotel rooms** have the highest average price.  
 - 📍 **Top Neighbourhoods:** Central Business District, French Quarter, Near North Side.  
@@ -31,8 +31,9 @@ The dashboard is designed for **hosts**, **investors**, and **travelers** to mak
 
 ## 🛠 **Tech Stack**
 - 📊 **Power BI** – Data Visualization  
-- 🐍 **Python (Pandas, NumPy)** – Data Cleaning & Processing  
+- ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) **Python (Pandas, NumPy)** – Data Cleaning & Processing  
 - 📂 **Dataset:** Public Airbnb data (Chicago & New Orleans)  
+
 
 ---
 

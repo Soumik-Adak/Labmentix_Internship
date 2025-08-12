@@ -1,6 +1,6 @@
 # Airbnb Market Analysis – Chicago & New Orleans 🏙️
 
- **📌 About:** Interactive Power BI dashboard analyzing Airbnb listings in Chicago & New Orleans, revealing key trends in pricing, availability, property types, and host behavior.
+ ## **📌 About:** Interactive Power BI dashboard analyzing Airbnb listings in Chicago & New Orleans, revealing key trends in pricing, availability, property types, and host behavior.
 
 📌 Project Overview
 This project showcases an interactive Power BI dashboard analyzing Airbnb listings in Chicago and New Orleans.

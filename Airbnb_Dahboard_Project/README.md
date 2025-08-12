@@ -3,11 +3,11 @@
  ### **📌 About:** 
   Interactive Power BI dashboard analyzing Airbnb listings in Chicago & New Orleans, revealing key trends in pricing, availability, property types, and host behavior.
 
-📌 Project Overview
+### **📌 Project Overview**
  This project showcases an interactive Power BI dashboard analyzing Airbnb listings in Chicago and New Orleans.
  The analysis focuses on pricing trends, availability, property types, and host behavior, helping hosts, investors, and travelers make informed decisions.
 
-📊 Key Insights
+### **📊 Key Insights**
  Total Listings: 16,070
 
    Average Price: $551.27
@@ -18,7 +18,7 @@
    
    Average Review per Month: 1.43
 
- Highlights:
+ #### **Highlights:**
 
    New Orleans slightly surpasses Chicago in total listings.
    
@@ -30,21 +30,21 @@
    
    New hosts tend to list at higher prices compared to experienced hosts.
 
-🛠 Tech Stack
+### **🛠 Tech Stack**
   Data Visualization: Power BI
   
   Data Processing: Python (Pandas, NumPy)
   
   Dataset: Airbnb (Chicago & New Orleans) – Public dataset
 
-🚀 How to Use
+### **🚀 How to Use**
   Open the .pbix file in Power BI Desktop.
   
   Use the city and room type filters to explore the data.
   
   Hover over visuals for detailed insights.
 
-📈 Future Enhancements
+### **📈 Future Enhancements**
   Add more cities for comparative analysis.
   
   Introduce time-series trends for price and availability.

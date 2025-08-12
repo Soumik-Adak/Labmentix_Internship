@@ -29,10 +29,10 @@ The dashboard is designed for **hosts**, **investors**, and **travelers** to mak
 
 ---
 
-## 🛠 **Tech Stack**
-- 📊 **Power BI** – Data Visualization  
+## ​ **Tech Stack**
+- ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=flat&logo=powerbi&logoColor=black) **Power BI** – Data Visualization  
 - ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) **Python (Pandas, NumPy)** – Data Cleaning & Processing  
-- 📂 **Dataset:** Public Airbnb data (Chicago & New Orleans)  
+- ![Inside Airbnb](https://img.shields.io/badge/Inside%20Airbnb-Data?style=flat&logo=airbnb&logoColor=white) **Dataset:** Public Airbnb data from *Inside Airbnb* (Chicago & New Orleans) — a curated dataset of Airbnb listings, calendar activity, and reviews updated quarterly. :contentReference[oaicite:0]{index=0}
 
 
 ---

@@ -10,6 +10,15 @@ The dashboard is designed for **hosts**, **investors**, and **travelers** to mak
 
 ---
 
+## 📌 **Problem Areas to Explore**
+
+- 1. Which are the popular neighbourhoods, their average prices and no. of listings?
+- 2. What is the percent share of different property types and room types?
+- 3. How the pricing is varying with location, property type, and reviews?
+- 4. What are the different correlations between type of hosts and factors like- reviews & price?
+
+---
+
 ## 📊 **Key Insights**
 
 | Metric                        | Value       |

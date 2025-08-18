@@ -12,9 +12,12 @@ from datetime import datetime
 DB_PATH = "local_food.db"
 
 def get_conn():
-    return sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row  # results behave like dicts
+    return conn
 
 def run_query_df(query, params=None):
+    import pandas as pd
     conn = get_conn()
     try:
         df = pd.read_sql(query, conn, params=params)
@@ -22,14 +25,11 @@ def run_query_df(query, params=None):
         conn.close()
     return df
 
-def run_exec(query, params=None, many=False, data=None):
+def run_exec(query, params=None):
     conn = get_conn()
     cur = conn.cursor()
     try:
-        if many and data is not None:
-            cur.executemany(query, data)
-        else:
-            cur.execute(query, params)
+        cur.execute(query, params or [])
         conn.commit()
         return cur.rowcount
     finally:
@@ -589,5 +589,6 @@ elif section == "CRUD":
 #             st.dataframe(df, use_container_width=True)
 #         except sqlite3.Error as e:
 #             st.error(str(e))
+
 
 

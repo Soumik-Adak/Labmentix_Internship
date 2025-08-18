@@ -38,16 +38,72 @@ st.set_page_config(page_title="Local Food Wastage Management", layout="wide")
 
 # Header (try image first, fallback text)
 try:
-    header_image = "header.png"  # put your image in repo
+    header_image = "food_wastage.png"  
     st.image(Image.open(header_image), use_column_width=True)
 except Exception:
     st.title("🍲 Local Food Wastage Management System")
 
-menu = ["Browse & Filter", "Queries", "Contacts", "CRUD"]
+st.sidebar.subheader("Select Analysis")
+
+# Sidebar Navigation
+menu = ["Dashboard","Browse & Filter", "Queries", "Contacts", "CRUD"]
 section = st.sidebar.radio("Navigate", menu)
 
+# ----- SUMMARY METRICS -----
+if section == "Dashboard":
+    st.subheader("📊 Dashboard Overview")
+
+    # Queries for counts
+    providers_count = run_query_df("SELECT COUNT(*) FROM providers").iloc[0][0]
+    receivers_count = run_query_df("SELECT COUNT(*) FROM receivers").iloc[0][0]
+    food_count = run_query_df("SELECT COUNT(*) FROM food_listings").iloc[0][0]
+    claims_count = run_query_df("SELECT COUNT(*) FROM claims").iloc[0][0]
+
+    # Use CSS for KPI cards
+    st.markdown(
+        """
+        <style>
+        .kpi-card {
+            background: linear-gradient(135deg, #f0f4ff, #d6e4ff);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.15);
+            transition: 0.3s;
+        }
+        .kpi-card:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #e8f0ff, #cddfff);
+        }
+        .kpi-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2E86C1;
+        }
+        .kpi-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Display KPI cards
+    c1, c2, c3, c4 = st.columns(4)
+
+    with c1:
+        st.markdown(f"<div class='kpi-card'><div class='kpi-value'>{providers_count}</div><div class='kpi-label'>Total Providers</div></div>", unsafe_allow_html=True)
+    with c2:
+        st.markdown(f"<div class='kpi-card'><div class='kpi-value'>{receivers_count}</div><div class='kpi-label'>Total Receivers</div></div>", unsafe_allow_html=True)
+    with c3:
+        st.markdown(f"<div class='kpi-card'><div class='kpi-value'>{food_count}</div><div class='kpi-label'>Total Food Listings</div></div>", unsafe_allow_html=True)
+    with c4:
+        st.markdown(f"<div class='kpi-card'><div class='kpi-value'>{claims_count}</div><div class='kpi-label'>Total Claims</div></div>", unsafe_allow_html=True)
+
 # ------------------ BROWSE & FILTER ------------------
-if section == "Browse & Filter":
+elif section == "Browse & Filter":
     st.subheader("Filter Food Donations")
     # Filters
     cities = run_query_df("SELECT DISTINCT City FROM providers ORDER BY City")["City"].dropna().tolist()

@@ -68,10 +68,10 @@ if section == "Dashboard":
     st.subheader("📊 Dashboard Overview")
 
     # Queries for counts
-    providers_count = run_query_df("SELECT COUNT(*) as cnt FROM providers")["cnt"][0]
-    receivers_count = run_query_df("SELECT COUNT(*) as cnt FROM receivers")["cnt"][0]
-    food_count = run_query_df("SELECT COUNT(*) as cnt FROM food_listings")["cnt"][0]
-    claims_count = run_query_df("SELECT COUNT(*) as cnt FROM claims")["cnt"][0]
+    providers_count = run_query_df("SELECT COUNT(*) FROM providers").iloc[0][0]
+    receivers_count = run_query_df("SELECT COUNT(*) FROM receivers").iloc[0][0]
+    food_count = run_query_df("SELECT COUNT(*) FROM food_listings").iloc[0][0]
+    claims_count = run_query_df("SELECT COUNT(*) FROM claims").iloc[0][0]
 
     ## Inject CSS for KPI cards
     st.markdown(
@@ -607,4 +607,5 @@ elif section == "CRUD":
 #             st.dataframe(df, use_container_width=True)
 #         except sqlite3.Error as e:
 #             st.error(str(e))
+
 

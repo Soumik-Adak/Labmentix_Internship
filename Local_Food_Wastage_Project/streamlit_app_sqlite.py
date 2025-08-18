@@ -141,6 +141,22 @@ elif section == "Browse & Filter":
         params += sel_food_types
 
     df = run_query_df(base_sql, params)
+
+     # ---- CATEGORY CLEANING ----
+    veg_exclude = ["Chicken", "Fish"]
+    vegan_exclude = ["Dairy"]
+    nonveg_exclude = ["Vegetable", "Bread"]
+
+    def filter_food_type(df):
+        return df[
+            ((df["Food_Type"] == "Vegetarian") & (~df["Food_Name"].str.contains("|".join(veg_exclude)))) |
+            ((df["Food_Type"] == "Vegan") & (~df["Food_Name"].str.contains("|".join(vegan_exclude)))) |
+            ((df["Food_Type"] == "Non-Vegetarian") & (~df["Food_Name"].str.contains("|".join(nonveg_exclude))))
+        ]
+
+    if not df.empty:
+        df = filter_food_type(df)
+
     st.dataframe(df, use_container_width=True)
 
     if not df.empty:

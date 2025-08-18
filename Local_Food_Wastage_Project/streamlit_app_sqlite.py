@@ -38,7 +38,7 @@ st.set_page_config(page_title="Local Food Wastage Management", layout="wide")
 
 # Header (try image first, fallback text)
 try:
-    header_image = "food_wastage.png"  
+    header_image = "Local_Food_Wastage_Project/food_wastage.png"  
     st.image(Image.open(header_image), use_column_width=True)
 except Exception:
     st.title("🍲 Local Food Wastage Management System")

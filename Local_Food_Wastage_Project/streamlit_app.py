@@ -9,7 +9,7 @@ from datetime import datetime
 
 # --------  database helpers ----------
 
-DB_PATH = "local_food.db"
+DB_PATH = "Local_Food_Wastage_Project/local_food.db"
 
 def get_conn():
     conn = sqlite3.connect(DB_PATH)
@@ -589,6 +589,7 @@ elif section == "CRUD":
 #             st.dataframe(df, use_container_width=True)
 #         except sqlite3.Error as e:
 #             st.error(str(e))
+
 
 
 

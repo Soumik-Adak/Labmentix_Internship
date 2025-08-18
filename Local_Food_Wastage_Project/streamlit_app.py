@@ -122,11 +122,11 @@ elif section == "Browse & Filter":
     # Filters (pulled live from DB)
     cities = run_query_df(
                             """
-                                SELECT DISTINCT City
+                                SELECT DISTINCT City as city
                                 FROM providers 
                                 ORDER BY City
                             """
-                        )["City"].dropna().tolist()
+                        )["city"].dropna().tolist()
     providers = run_query_df(
                                 """
                                     SELECT DISTINCT Name 
@@ -607,3 +607,4 @@ elif section == "CRUD":
 #             st.dataframe(df, use_container_width=True)
 #         except sqlite3.Error as e:
 #             st.error(str(e))
+

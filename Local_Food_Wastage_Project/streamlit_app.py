@@ -120,27 +120,9 @@ if section == "Dashboard":
 elif section == "Browse & Filter":
     st.subheader("Filter Food Donations")
     # Filters (pulled live from DB)
-    cities = run_query_df(
-                            """
-                                SELECT DISTINCT City as city
-                                FROM providers 
-                                ORDER BY City
-                            """
-                        )["city"].dropna().tolist()
-    providers = run_query_df(
-                                """
-                                    SELECT DISTINCT Name 
-                                    FROM providers 
-                                    ORDER BY Name
-                                """
-                            )["Name"].tolist()
-    food_types = run_query_df(
-                                """
-                                    SELECT DISTINCT Food_Type 
-                                    FROM food_listings 
-                                    ORDER BY Food_Type
-                                """
-                            )["Food_Type"].dropna().tolist()
+    cities = run_query_df("SELECT DISTINCT City FROM providers ORDER BY City")["City"].dropna().tolist()
+    providers = run_query_df("SELECT DISTINCT Name FROM providers ORDER BY Name")["Name"].tolist()
+    food_types = run_query_df("SELECT DISTINCT Food_Type FROM food_listings ORDER BY Food_Type")["Food_Type"].dropna().tolist()
 
     c1, c2, c3 = st.columns(3)
 
@@ -607,4 +589,5 @@ elif section == "CRUD":
 #             st.dataframe(df, use_container_width=True)
 #         except sqlite3.Error as e:
 #             st.error(str(e))
+
 

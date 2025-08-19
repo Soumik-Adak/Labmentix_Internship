@@ -124,7 +124,7 @@ elif section == "Browse & Filter":
             f.Food_Type, f.Meal_Type, p.Name AS Provider, p.Type AS Provider_Type,
             p.City, p.Address, p.Contact
         FROM food_listings f
-        JOIN providers p ON f.Provider_ID = p.Provider_ID
+        LEFT JOIN providers p ON f.Provider_ID = p.Provider_ID
         WHERE 1=1
     '''
     params = []

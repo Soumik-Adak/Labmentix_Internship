@@ -180,8 +180,7 @@ elif section == "Queries":
         "Average Food Claimed per Receiver",
         "Most Claimed Meal Type",
         "Total Quantity Donated by Provider",
-        "Top demanding City based on Food Claims",
-        "Improve Distribution Efforts"
+        "Top demanding City based on Food Claims"
     ]
     choice = st.selectbox("Select a query", query_menu)
 
@@ -331,17 +330,7 @@ elif section == "Queries":
                 LIMIT 5
             """
         st.dataframe(run_query_df(query))
-    elif choice == "Improve Distribution Efforts":
-        query = """
-                SELECT 
-                        strftime('%Y-%m', c.Timestamp) AS month,
-                        COUNT(*) AS total_claims,
-                        SUM(CASE WHEN c.Status != 'Completed' THEN 1 ELSE 0 END) AS total_wasted
-                FROM claims c
-                GROUP BY month
-                ORDER BY month
-            """
-        st.dataframe(run_query_df(query))
+
 
 # ------------------ CONTACTS ------------------
 elif section == "Contacts":

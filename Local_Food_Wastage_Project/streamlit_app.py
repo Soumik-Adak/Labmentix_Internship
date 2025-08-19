@@ -36,13 +36,6 @@ def run_exec(query, params=None, many=False, data=None):
 # ------------------ STREAMLIT APP ------------------
 st.set_page_config(page_title="Local Food Wastage Management", layout="wide")
 
-# Header (try image first, fallback text)
-try:
-    header_image = "Local_Food_Wastage_Project/food_wastage.png"  
-    st.image(Image.open(header_image), use_container_width=True)
-except Exception:
-    st.title("🍲 Local Food Wastage Management System")
-
 st.sidebar.subheader("Select Analysis")
 
 # Sidebar Navigation

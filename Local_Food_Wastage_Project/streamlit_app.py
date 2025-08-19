@@ -46,7 +46,7 @@ section = st.sidebar.radio("Navigate", menu)
 if section == "Home":
     
     try:
-        header_image = "Local_Food_Wastage_Project/food_wastage.png"  
+        header_image = "Local_Food_Wastage_Project/image.png"  
         st.image(Image.open(header_image), use_container_width=True, width=600)
     except Exception:
         st.title("🍲 Local Food Wastage Management System")

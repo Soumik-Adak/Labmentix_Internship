@@ -46,13 +46,19 @@ except Exception:
 st.sidebar.subheader("Select Analysis")
 
 # Sidebar Navigation
-menu = ["Dashboard","Browse & Filter", "Queries", "Contacts", "CRUD"]
+menu = ["Home","Browse & Filter", "Queries", "Contacts", "CRUD"]
 section = st.sidebar.radio("Navigate", menu)
 
 # ----- SUMMARY METRICS -----
-if section == "Dashboard":
-    st.subheader("📊 Dashboard Overview")
+if section == "Home":
+    
+    try:
+        header_image = "Local_Food_Wastage_Project/food_wastage.png"  
+        st.image(Image.open(header_image), use_container_width=True, width=600)
+    except Exception:
+        st.title("🍲 Local Food Wastage Management System")
 
+    
     # Queries for counts
     providers_count = run_query_df("SELECT COUNT(*) FROM providers").iloc[0][0]
     receivers_count = run_query_df("SELECT COUNT(*) FROM receivers").iloc[0][0]

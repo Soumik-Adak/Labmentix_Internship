@@ -421,13 +421,27 @@ elif section == "CRUD":
         if st.button("Update Provider Contact"):
             run_exec("UPDATE providers SET Contact=? WHERE Provider_ID=?", (new_contact,pid))
             st.success("Provider contact updated.")
+            
+    elif crud_tab == "receivers":
+        rid = st.number_input("Receiver_ID to update", min_value=1, step=1)
+        new_contact = st.text_input("New Contact")
+        if st.button("Update Receiver Contact"):
+            run_exec("UPDATE receivers SET Contact=? WHERE Receiver_ID=?", (new_contact, rid))
+            st.success("Receiver contact updated.")
 
-    if crud_tab == "food_listings":
+    elif crud_tab == "food_listings":
         fid = st.number_input("Food_ID to update", min_value=1, step=1)
         new_qty = st.number_input("New Quantity", min_value=0, step=1)
         if st.button("Update Food Quantity"):
             run_exec("UPDATE food_listings SET Quantity=? WHERE Food_ID=?", (new_qty,fid))
             st.success("Food quantity updated.")
+
+    elif crud_tab == "claims":
+        cid = st.number_input("Claim_ID to update", min_value=1, step=1)
+        new_status = st.selectbox("New Status", ["Pending", "Completed", "Canceled"])
+        if st.button("Update Claim Status"):
+            run_exec("UPDATE claims SET Status=? WHERE Claim_ID=?", (new_status, cid))
+            st.success("Claim status updated.")
 
     st.divider()
 

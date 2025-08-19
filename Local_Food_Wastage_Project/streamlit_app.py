@@ -334,7 +334,7 @@ elif section == "Queries":
     elif choice == "Improve Distribution Efforts":
         query = """
                 SELECT 
-                        date_format('%Y-%m', c.Timestamp) AS month,
+                        strftime('%Y-%m', c.Timestamp) AS month,
                         COUNT(*) AS total_claims,
                         SUM(CASE WHEN c.Status != 'Completed' THEN 1 ELSE 0 END) AS total_wasted
                 FROM claims c

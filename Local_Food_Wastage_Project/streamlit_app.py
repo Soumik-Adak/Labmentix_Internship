@@ -179,7 +179,9 @@ elif section == "Queries":
         "Percentage of Claim Status",
         "Average Food Claimed per Receiver",
         "Most Claimed Meal Type",
-        "Total Quantity Donated by Provider"
+        "Total Quantity Donated by Provider",
+        "Top demanding City based on Food Claims",
+        "Improve Distribution Efforts"
     ]
     choice = st.selectbox("Select a query", query_menu)
 
@@ -317,6 +319,28 @@ elif section == "Queries":
             JOIN providers p ON f.Provider_ID = p.Provider_ID
             GROUP BY p.Name ORDER BY total_quantity_donated DESC
         """
+        st.dataframe(run_query_df(query))
+    elif choice == "Top demanding City based on Food Claims":
+        query = """
+                SELECT p.City, COUNT(c.Claim_ID) AS total_claims
+                FROM claims c
+                JOIN food_listings f ON c.Food_ID = f.Food_ID
+                JOIN providers p ON f.Provider_ID = p.Provider_ID
+                GROUP BY p.City
+                ORDER BY total_claims DESC
+                LIMIT 5
+            """
+        st.dataframe(run_query_df(query))
+    elif choice == "Improve Distribution Efforts":
+        query = """
+                SELECT 
+                        date_format('%Y-%m', c.Timestamp) AS month,
+                        COUNT(*) AS total_claims,
+                        SUM(CASE WHEN c.Status != 'Completed' THEN 1 ELSE 0 END) AS total_wasted
+                FROM claims c
+                GROUP BY month
+                ORDER BY month
+            """
         st.dataframe(run_query_df(query))
 
 # ------------------ CONTACTS ------------------

@@ -40,6 +40,17 @@ The platform enables **real-time donations**, **data insights**, and **efficient
 
 ---
 
-## 📂 Project Structure
+## 🔍 Example Insights (Queries)
+
+📌 Most frequent food providers and their contributions
+📌 Highest demand cities based on claims
+📌 Food wastage trends over time
+📌 Popular food types & meal preferences
+
+## 📈 Future Enhancements
+
+✨ Geolocation-based matching → Connect nearby providers & receivers
+✨ Mobile notifications → Real-time updates on available food
+✨ AI-driven prediction models → Detect wastage patterns & optimize allocation
 
 

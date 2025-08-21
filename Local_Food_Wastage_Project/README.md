@@ -34,7 +34,7 @@ The platform enables **real-time donations**, **data insights**, and **efficient
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** [Streamlit]([https://streamlit.io/](https://labmentixinternship-localfoodmanagment.streamlit.app/))  
+- **Frontend:** [Streamlit]([https://labmentixinternship-localfoodmanagment.streamlit.app/]) 
 - **Database:** SQLite3  
 - **Libraries:** Pandas, Plotly, PIL, Datetime  
 

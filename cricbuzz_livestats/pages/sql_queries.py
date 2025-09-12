@@ -73,7 +73,7 @@ def show():
         "Q3. Top 10 ODI run scorers": """
             SELECT p.full_name,
                    s.runs,
-                   s.average,
+                   s.average
             FROM player_stats s
             JOIN players p ON p.player_id = s.player_id
             WHERE s.format = 'odi'
@@ -323,6 +323,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

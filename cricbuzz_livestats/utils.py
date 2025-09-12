@@ -432,7 +432,7 @@ def load_matches_from_json(file_name="recent_matches.json"):
 
     conn.commit()
     conn.close()
-    print(f"✅ Inserted {match_count} matches and {score_count} scores from {filepath}")
+    print(f"✅ Inserted {match_count} matches and {score_count} scores from {file_path}")
 
 # ----------------------------------------------------
 def save_match_to_db(match_info, match_score):
@@ -515,6 +515,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

@@ -75,7 +75,7 @@ def show():
                    s.runs,
                    s.batting_avg,
                    s.hundreds
-            FROM insert_player_stats_from_topstats s
+            FROM player_stats s
             JOIN players p ON p.player_id = s.player_id
             WHERE s.format = 'odi'
             ORDER BY s.runs DESC
@@ -324,6 +324,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

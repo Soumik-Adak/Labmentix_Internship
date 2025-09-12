@@ -89,13 +89,31 @@ def show():
         """,
 
         "Q5. Matches won by each team": """
-            SELECT t.team_name,
-                   COUNT(*) AS wins
-            FROM matches m
-            JOIN teams t ON m.team_id = t.team_id
-            WHERE m.state = 'Complete'
-            GROUP BY t.team_id
-            ORDER BY wins DESC;
+                        SELECT
+                            team_name,
+                            COUNT(*) AS wins
+                        FROM (
+                            SELECT
+                                CASE
+                                    WHEN m.status LIKE '%won by%' THEN
+                                        CASE
+                                            WHEN INSTR(m.status, m.team1_name) > 0 THEN m.team1_name
+                                            WHEN INSTR(m.status, m.team2_name) > 0 THEN m.team2_name
+                                            ELSE NULL
+                                        END
+                                    ELSE NULL
+                                END AS team_name
+                            FROM
+                                matches m
+                            WHERE
+                                m.state = 'Complete'
+                                AND m.status LIKE '%won by%'
+                        ) AS subquery
+                        WHERE team_name IS NOT NULL
+                        GROUP BY
+                            team_name
+                        ORDER BY
+                            wins DESC;
         """,
 
         "Q6. Players per playing role": """

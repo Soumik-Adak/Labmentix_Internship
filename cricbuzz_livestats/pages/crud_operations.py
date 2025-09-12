@@ -13,7 +13,18 @@ def run_query(query, params=(), commit=False):
         conn.close()
         return None
     else:
-        df = pd.DataFrame(cur.fetchall(), columns=[desc[0] for desc in cur.description])
+        cols = [desc[0] for desc in cur.description]
+        # Deduplicate column names
+        seen, fixed_cols = {}, []
+        for col in cols:
+            if col not in seen:
+                seen[col] = 0
+                fixed_cols.append(col)
+            else:
+                seen[col] += 1
+                fixed_cols.append(f"{col}_{seen[col]}")
+
+        df = pd.DataFrame(cur.fetchall(), columns=fixed_cols)
         conn.close()
         return df
 
@@ -128,6 +139,7 @@ def show():
             if st.button("Delete"):
                 run_query("DELETE FROM player_stats WHERE rowid=?", (rowid,), commit=True)
                 st.success("✅ Player stat deleted successfully!")
+
 
 
 

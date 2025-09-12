@@ -314,10 +314,11 @@ def seed_all_venues():
     print(f"✅ Inserted {len(venues)} venues into DB")
 
 # ------player_stats---------
-def load_player_stats_from_json(file_path="player_stats.json"):
+def insert_player_stats_from_topstats(file_name="player_stats.json"):
     conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
+    file_path = os.path.join(DATA_DIR, file_name)
     with open(file_path, "r", encoding="utf-8") as f:
         stats = json.load(f)
 
@@ -495,6 +496,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

@@ -250,7 +250,7 @@ def get_all_venues():
     else:
         return []
 
-def save_venue_to_db(file_path="all_venues.json"):
+def save_venue_to_db(file_path="cricbuzz_livestats/all_venues.json"):
     """Insert a single venue into the DB"""
     
     conn = sqlite3.connect("cricket.db")
@@ -301,26 +301,6 @@ def seed_all_venues():
             save_venue_to_db(details)
     print(f"✅ Inserted {len(venues)} venues into DB")
 
-# # 3. Insert players into DB
-# def insert_players_from_stats(data, stat_type, format_type):
-#     conn = sqlite3.connect("cricket.db")
-#     cur = conn.cursor()
-
-#     players = data.get("values", [])
-#     for row in players:
-#         vals = row.get("values", [])
-#         if len(vals) >= 2:
-#             player_id = int(vals[0]) if vals[0].isdigit() else None
-#             player_name = vals[1]
-
-#             cur.execute("""
-#             INSERT OR IGNORE INTO players (player_id, full_name, country, playing_role, batting_style, bowling_style)
-#             VALUES (?, ?, ?, ?, ?, ?)
-#             """, (player_id, player_name, None, None, None, None))
-
-#     conn.commit()
-#     conn.close()
-#     print(f"✅ Inserted {len(players)} players from {stat_type} ({format_type})")
 
 def safe_int(value):
     try:
@@ -378,7 +358,7 @@ def insert_player_stats_from_topstats(data, stat_type, format_type):
     print(f"✅ Inserted {len(players)} stats for {stat_type} ({format_type})")
 
 # for matches
-def load_matches_from_json(filepath="recent_matches.json"):
+def load_matches_from_json(filepath="cricbuzz_livestats/recent_matches.json"):
     conn = sqlite3.connect("cricket.db")
     cur = conn.cursor()
 
@@ -523,6 +503,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

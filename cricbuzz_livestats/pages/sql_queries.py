@@ -76,7 +76,7 @@ def show():
                    s.average
             FROM player_stats s
             JOIN players p ON p.player_id = s.player_id
-            WHERE s.format = 'odi'
+            WHERE s.format = 'test'
             ORDER BY s.runs DESC
             LIMIT 10;
         """,
@@ -323,6 +323,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

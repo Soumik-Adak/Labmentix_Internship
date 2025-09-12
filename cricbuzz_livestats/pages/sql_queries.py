@@ -37,9 +37,9 @@ def show():
         save_venue_to_db("all_venues.json")
         st.success("✅ Venues data loaded into DB!")
 
-    # if st.button("📌 Load Series JSON"):
-    #     load_series_from_json("all_series.json")
-    #     st.success("✅ Series data loaded into DB!")
+    if st.button("📌 Load Player Stats JSON"):
+         insert_player_stats_from_topstats("player_stats.json")
+         st.success("✅ Player Stats data loaded into DB!")
 
     st.divider()
 
@@ -341,6 +341,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

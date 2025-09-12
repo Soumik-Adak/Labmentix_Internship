@@ -323,7 +323,7 @@ def insert_player_stats_from_topstats(file_name="player_stats.json"):
     cur = conn.cursor()
 
     file_path = os.path.join(DATA_DIR, file_name)
-    with open(filepath, "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf-8") as f:
         stats_data = json.load(f)
 
     inserted_count = 0
@@ -371,7 +371,7 @@ def insert_player_stats_from_topstats(file_name="player_stats.json"):
 
     conn.commit()
     conn.close()
-    print(f"✅ Inserted {inserted_count} rows from {filepath} into player_stats")
+    print(f"✅ Inserted {inserted_count} rows from {file_path} into player_stats")
 
 
 # for matches
@@ -521,6 +521,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

@@ -4,7 +4,7 @@ import pandas as pd
 from utils import load_players_from_json, save_venue_to_db, load_matches_from_json
 
 
-DB_PATH = "cricket.db"
+DB_PATH = "cricbuzz_livestats/cricket.db"
 
 # Utility to run SQL queries
 def run_sql_query(query: str):
@@ -323,3 +323,4 @@ def show():
 
 if __name__ == "__main__":
     show()
+

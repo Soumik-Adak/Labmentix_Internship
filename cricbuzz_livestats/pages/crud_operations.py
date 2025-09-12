@@ -62,9 +62,9 @@ def show():
             if st.button("Insert"):
                 run_query(
                     """INSERT INTO player_stats 
-                    (stat_type, category, player_name, matches, innings, runs, average, strike_rate) 
+                    (player_id, player_name, format, scope, matches, innings, runs, average) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-                    (stat_type, category, player_name, matches, innings, runs, average, strike_rate),
+                    (player_id, player_name, format, scope, matches, innings, runs, average),
                     commit=True
                 )
                 st.success("✅ Player stat inserted successfully!")
@@ -97,12 +97,11 @@ def show():
             rowid = st.number_input("Enter Row ID to Update", min_value=1)
             new_runs = st.number_input("New Runs", min_value=0)
             new_avg = st.number_input("New Average", min_value=0.0)
-            new_sr = st.number_input("New Strike Rate", min_value=0.0)
 
             if st.button("Update"):
                 run_query(
-                    "UPDATE player_stats SET runs=?, average=?, strike_rate=? WHERE rowid=?",
-                    (new_runs, new_avg, new_sr, rowid),
+                    "UPDATE player_stats SET runs=?, average=? WHERE rowid=?",
+                    (new_runs, new_avg, rowid),
                     commit=True
                 )
                 st.success("✅ Player stats updated successfully!")
@@ -129,6 +128,7 @@ def show():
             if st.button("Delete"):
                 run_query("DELETE FROM player_stats WHERE rowid=?", (rowid,), commit=True)
                 st.success("✅ Player stat deleted successfully!")
+
 
 
 

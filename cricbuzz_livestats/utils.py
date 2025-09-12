@@ -2,6 +2,7 @@ import sqlite3
 import requests
 import streamlit as st
 import json
+import os
 
 API_KEY = "13c92f16f8msh3cc3f324fca2fdep11155djsn7ee675a36724"
 HOST = "cricbuzz-cricket.p.rapidapi.com"
@@ -11,9 +12,17 @@ headers = {
     "x-rapidapi-host": HOST
 }
 
+# ✅ Base directories
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+# Make sure data dir exists
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR)
+
 # ----------------- DB Initialization -----------------
 def init_db():
-    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
+    conn = sqlite3.connect("cricket.db")
     cur = conn.cursor()
 
     cur.execute("""
@@ -175,10 +184,11 @@ def fetch_stats(stats_type, format_type):
         return {}
 
 # ----------------- JSON Loaders -----------------
-def load_players_from_json(file_path="cricbuzz_livestats/all_team_players.json"):
+def load_players_from_json(file_name="all_team_players.json"):
     conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
-
+    
+    file_path = os.path.join(DATA_DIR, file_name)
     with open(file_path, "r", encoding="utf-8") as f:
         players = json.load(f)
 
@@ -250,12 +260,13 @@ def get_all_venues():
     else:
         return []
 
-def save_venue_to_db(file_path="cricbuzz_livestats/all_venues.json"):
+def save_venue_to_db(file_name="all_venues.json"):
     """Insert a single venue into the DB"""
     
-    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
+    conn = sqlite3.connect("cricket.db")
     cur = conn.cursor()
-    
+
+    file_path = os.path.join(DATA_DIR, file_name)
     with open(file_path, "r", encoding="utf-8") as f:
         venues = json.load(f)
     # Clean capacity field
@@ -358,11 +369,12 @@ def insert_player_stats_from_topstats(data, stat_type, format_type):
     print(f"✅ Inserted {len(players)} stats for {stat_type} ({format_type})")
 
 # for matches
-def load_matches_from_json(filepath="cricbuzz_livestats/recent_matches.json"):
+def load_matches_from_json(file_name="recent_matches.json"):
     conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
-    with open(filepath, "r", encoding="utf-8") as f:
+    file_path = os.path.join(DATA_DIR, file_name)
+    with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     match_count, score_count = 0, 0
@@ -503,6 +515,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

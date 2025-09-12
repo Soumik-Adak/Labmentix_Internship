@@ -13,7 +13,7 @@ headers = {
 
 # ----------------- DB Initialization -----------------
 def init_db():
-    conn = sqlite3.connect("cricket.db")
+    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
     cur.execute("""
@@ -176,7 +176,7 @@ def fetch_stats(stats_type, format_type):
 
 # ----------------- JSON Loaders -----------------
 def load_players_from_json(file_path="cricbuzz_livestats/all_team_players.json"):
-    conn = sqlite3.connect("cricket.db")
+    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
     with open(file_path, "r", encoding="utf-8") as f:
@@ -253,7 +253,7 @@ def get_all_venues():
 def save_venue_to_db(file_path="cricbuzz_livestats/all_venues.json"):
     """Insert a single venue into the DB"""
     
-    conn = sqlite3.connect("cricket.db")
+    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
     
     with open(file_path, "r", encoding="utf-8") as f:
@@ -359,7 +359,7 @@ def insert_player_stats_from_topstats(data, stat_type, format_type):
 
 # for matches
 def load_matches_from_json(filepath="cricbuzz_livestats/recent_matches.json"):
-    conn = sqlite3.connect("cricket.db")
+    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
     with open(filepath, "r", encoding="utf-8") as f:
@@ -427,7 +427,7 @@ def save_match_to_db(match_info, match_score):
     if not match_info or not match_score:
         return
 
-    conn = sqlite3.connect("cricket.db")
+    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
     cur.execute("""
@@ -503,6 +503,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

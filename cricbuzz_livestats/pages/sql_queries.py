@@ -1,7 +1,7 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
-from utils import load_players_from_json, save_venue_to_db, load_matches_from_json
+from utils import load_players_from_json, save_venue_to_db, load_matches_from_json, insert_player_stats_from_topstats
 
 
 DB_PATH = "cricbuzz_livestats/cricket.db"
@@ -324,6 +324,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

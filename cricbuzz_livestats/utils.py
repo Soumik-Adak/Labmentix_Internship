@@ -175,7 +175,7 @@ def fetch_stats(stats_type, format_type):
         return {}
 
 # ----------------- JSON Loaders -----------------
-def load_players_from_json(file_path="all_team_players.json"):
+def load_players_from_json(file_path="cricbuzz_livestats/all_team_players.json"):
     conn = sqlite3.connect("cricket.db")
     cur = conn.cursor()
 
@@ -523,6 +523,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

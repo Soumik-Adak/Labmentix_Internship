@@ -37,7 +37,7 @@ def show():
     # --- VIEW RECORDS ---
     if choice == "View Records":
         st.subheader("📋 View Records")
-        table = st.selectbox("Select Table", ["matches", "scores", "teams", "player_stats", "players"])
+        table = st.selectbox("Select Table", ["matches", "scores", "teams", "players", "player_stats"])
 
         df = run_query(f"SELECT * FROM {table}")
         st.dataframe(df)
@@ -139,6 +139,7 @@ def show():
             if st.button("Delete"):
                 run_query("DELETE FROM player_stats WHERE rowid=?", (rowid,), commit=True)
                 st.success("✅ Player stat deleted successfully!")
+
 
 
 

@@ -50,7 +50,7 @@ def show():
             FROM players p
             JOIN teams t
             ON p.team_id = t.team_id
-            WHERE t.team_id = 2; -- team_id 2 means india
+            WHERE p.team_id = 2; -- team_id 2 means india
         """,
 
         "Q2. Matches in last 30 days": """
@@ -323,6 +323,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

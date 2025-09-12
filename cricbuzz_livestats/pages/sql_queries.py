@@ -63,8 +63,9 @@ def show():
                 datetime(m.start_date / 1000, 'unixepoch') AS match_start,
                 datetime(m.end_date   / 1000, 'unixepoch') AS match_end
             FROM matches m
-            JOIN teams t ON m.team_id = t.team_id
-            JOIN venues v ON m.venue_id = v.venue_id
+            LEFT JOIN teams t1 ON m.team1_id = t1.team_id
+            LEFT JOIN teams t2 ON m.team2_id = t2.team_id
+            LEFT JOIN venues v ON m.venue_id = v.venue_id
             WHERE date(m.start_date / 1000, 'unixepoch') >= date('now', '-30 days')
             ORDER BY m.start_date DESC;
         """,
@@ -323,6 +324,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

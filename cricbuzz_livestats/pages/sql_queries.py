@@ -125,8 +125,8 @@ def show():
 
         "Q7. Highest individual score per format": """
             SELECT format,
-                   MAX(highest) AS highest_score
-            FROM player_format_stats
+                   MAX(HS) AS highest_score
+            FROM player_stats
             GROUP BY format;
         """,
 
@@ -341,6 +341,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

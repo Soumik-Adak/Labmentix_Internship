@@ -330,23 +330,20 @@ def insert_player_stats_from_topstats(data, stat_type, format_type):
     conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
-    headers = data.get("headers", [])
     players = data.get("values", [])
 
     for row in players:
         vals = row.get("values", [])
-        if not vals:
+        if not vals or len(vals) < 6:
             continue
 
         # Extract name and ID
         player_id = safe_int(vals[0])
-        player_name = vals[1] if len(vals) > 1 else None
-
-        # Insert stats (adjust depending on headers length)
-        matches = safe_int(vals[2]) if len(vals) > 2 else None
-        innings = safe_int(vals[3]) if len(vals) > 3 else None
-        runs = safe_int(vals[4]) if len(vals) > 4 else None
-        average = safe_float(vals[5]) if len(vals) > 5 else None
+        player_name = vals[1]
+        matches = safe_int(vals[2]) 
+        innings = safe_int(vals[3]) 
+        runs = safe_int(vals[4])
+        average = safe_float(vals[5]) 
 
         cur.execute("""
         INSERT OR IGNORE INTO player_stats 
@@ -366,7 +363,16 @@ def insert_player_stats_from_topstats(data, stat_type, format_type):
 
     conn.commit()
     conn.close()
-    print(f"✅ Inserted {len(players)} stats for {stat_type} ({format_type})")
+    print(f"✅ Inserted {len(players)} stats for {stat_type.upper()} ({format_type.upper()})")
+
+# --------------------helper-----------------
+def fetch_and_save_stats(stats_type, format_type):
+    """Fetch stats from API and insert into DB"""
+    data = fetch_stats(stats_type, format_type)
+    if data and "values" in data:
+        insert_player_stats_from_topstats(data, stats_type, format_type)
+        return True
+    return False
 
 # for matches
 def load_matches_from_json(file_name="recent_matches.json"):
@@ -515,6 +521,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

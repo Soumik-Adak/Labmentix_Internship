@@ -205,30 +205,6 @@ def load_players_from_json(file_name="all_team_players.json"):
         team_id = player.get("team_id")
         playing_role = player.get("playing_role")
 
-        # 🔎 Lookup stats from player_stats if available
-        cur.execute("""
-            SELECT 
-                SUM(COALESCE(runs, 0)) AS total_runs,
-                SUM(COALESCE(wickets, 0)) AS total_wickets
-            FROM player_stats
-            WHERE player_id = ?
-        """, (player_id,))
-        stats = cur.fetchone()
-        total_runs = stats[0] if stats else 0
-        total_wickets = stats[1] if stats else 0
-
-        # 🏏 Classify role
-        if batting_style and not bowling_style:
-            playing_role = "Wicket-Keeper"
-        elif total_runs >= 2000 and total_wickets >= 100:
-            playing_role = "All-Rounder"
-        elif total_runs >= 2000:
-            playing_role = "Batsman"
-        elif total_wickets >= 200:
-            playing_role = "Bowler"
-        else:
-            playing_role = "Unknown"
-
 
         # Insert into players table
         cur.execute("""
@@ -519,6 +495,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

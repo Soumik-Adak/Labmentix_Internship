@@ -337,91 +337,40 @@ def seed_all_venues():
             save_venue_to_db(details)
     print(f"✅ Inserted {len(venues)} venues into DB")
 
-
-def sync_player_stats():
-    """Fetch all available stat types & formats dynamically and insert into player_stats"""
-    stats_list = get_stats_list()
-    if not stats_list:
-        print("❌ No stats list fetched.")
-        return
-
-    # Extract stat types from API response
-    stat_types = []
-    if "statType" in stats_list:  # adjust based on actual API response
-        stat_types = [s.get("id") for s in stats_list["statType"] if s.get("id")]
-
-    # Default formats
-    formats = ["test", "odi", "t20"]
-
-    for stat_type in stat_types:
-        for format_type in formats:
-            print(f"📥 Fetching {stat_type} for {format_type}...")
-            data = fetch_stats(stat_type, format_type)
-            if data and "values" in data:
-                insert_player_stats_from_topstats(data, stat_type, format_type)
-            else:
-                print(f"⚠️ No data for {stat_type} - {format_type}")
-
-def safe_int(value):
-    try:
-        return int(value.replace(",", "")) if value else None
-    except (ValueError, AttributeError):
-        return None
-
-def safe_float(value):
-    try:
-        return float(value)
-    except (ValueError, TypeError):
-        return None
-
-def insert_player_stats_from_topstats(data, stat_type, format_type):
-    """Insert player statistics from TopStats API into player_stats table"""
+# ------player_stats---------
+def load_player_stats_from_json(file_path="player_stats.json"):
     conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
-    players = data.get("values", [])
+    with open(file_path, "r", encoding="utf-8") as f:
+        stats = json.load(f)
 
-    for row in players:
-        vals = row.get("values", [])
-        if not vals:
-            continue
-
-        # Extract name and ID
-        player_id = safe_int(vals[0]) 
-        player_name = vals[1] if len(vals) > 1 else None
-        matches = safe_int(vals[2]) if len(vals) > 2 else None
-        innings = safe_int(vals[3]) if len(vals) > 3 else None
-        runs = safe_int(vals[4]) if len(vals) > 4 else None
-        average = safe_float(vals[5]) if len(vals) > 5 else None
-
-        cur.execute("""
-        INSERT OR IGNORE INTO player_stats 
-        (player_id, player_name, format, scope, series_id, matches, innings, runs, average)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            player_id,
-            player_name,
-            format_type,
-            stat_type,
-            None,  # series_id unknown from this endpoint
-            matches,
-            innings,
-            runs,
-            average
-        ))
+    inserted = 0
+    for s in stats:
+        try:
+            cur.execute("""
+                INSERT OR IGNORE INTO player_stats 
+                (player_id, player_name, format, scope, series_id, matches, innings, runs, average)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                int(s.get("player_id")) if s.get("player_id") else None,
+                s.get("player_name"),
+                s.get("format"),
+                s.get("scope"),
+                int(s.get("series_id")) if s.get("series_id") else None,
+                int(s.get("matches")) if s.get("matches") else None,
+                int(s.get("innings")) if s.get("innings") else None,
+                int(s.get("runs")) if s.get("runs") else None,
+                float(s.get("average")) if s.get("average") else None
+            ))
+            inserted += 1
+        except Exception as e:
+            print(f"⚠️ Skipped one stat row: {e}")
 
     conn.commit()
     conn.close()
-    print(f"✅ Inserted {len(players)} stats for {stat_type.upper()} ({format_type.upper()})")
+    print(f"✅ Inserted {inserted} player stats from {file_path}")
 
-# --------------------helper-----------------
-def fetch_and_save_stats(stats_type, format_type):
-    """Fetch stats from API and insert into DB"""
-    data = fetch_stats(stats_type, format_type)
-    if data and "values" in data:
-        insert_player_stats_from_topstats(data, stats_type, format_type)
-        return True
-    return False
 
 # for matches
 def load_matches_from_json(file_name="recent_matches.json"):
@@ -570,6 +519,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

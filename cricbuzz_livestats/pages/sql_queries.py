@@ -26,15 +26,15 @@ def show():
     st.subheader("📥 Load JSON Data into Database")
 
     if st.button("📌 Load Players JSON"):
-        load_players_from_json("all_team_players.json")
+        load_players_from_json("data/all_team_players.json")
         st.success("✅ Players data loaded into DB!")
 
     if st.button("📌 Load Matches JSON"):
-        load_matches_from_json("recent_matches.json")
+        load_matches_from_json("data/recent_matches.json")
         st.success("✅ Matches data loaded into DB!")
 
     if st.button("📌 Load Venues JSON"):
-        save_venue_to_db("all_venues.json")
+        save_venue_to_db("data/all_venues.json")
         st.success("✅ Venues data loaded into DB!")
 
     # if st.button("📌 Load Series JSON"):
@@ -323,5 +323,6 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 

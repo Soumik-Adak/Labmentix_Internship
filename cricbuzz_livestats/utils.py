@@ -315,38 +315,63 @@ def seed_all_venues():
 
 # ------player_stats---------
 def insert_player_stats_from_topstats(file_name="player_stats.json"):
+    """
+    Load player stats from JSON into the player_stats table.
+    JSON must come from the topstats API script.
+    """
     conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
     file_path = os.path.join(DATA_DIR, file_name)
-    with open(file_path, "r", encoding="utf-8") as f:
-        stats = json.load(f)
+    with open(filepath, "r", encoding="utf-8") as f:
+        stats_data = json.load(f)
 
-    inserted = 0
-    for s in stats:
-        try:
+    inserted_count = 0
+
+    for block in stats_data:
+        category = block.get("category")
+        format_type = block.get("format")
+        headers = block.get("headers", [])
+        values = block.get("values", [])
+
+        for row in values:
+            vals = row.get("values", [])
+            if not vals or len(vals) < 2:
+                continue
+
+            # player_id sometimes missing → set None
+            player_id = int(vals[0]) if vals[0].isdigit() else None
+            player_name = vals[1]
+
+            matches = int(vals[2]) if len(vals) > 2 and vals[2].isdigit() else None
+            innings = int(vals[3]) if len(vals) > 3 and vals[3].isdigit() else None
+            runs = int(vals[4]) if len(vals) > 4 and vals[4].isdigit() else None
+
+            try:
+                average = float(vals[5]) if len(vals) > 5 else None
+            except ValueError:
+                average = None
+
             cur.execute("""
-                INSERT OR IGNORE INTO player_stats 
+                INSERT OR IGNORE INTO player_stats
                 (player_id, player_name, format, scope, series_id, matches, innings, runs, average)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
-                int(s.get("player_id")) if s.get("player_id") else None,
-                s.get("player_name"),
-                s.get("format"),
-                s.get("scope"),
-                int(s.get("series_id")) if s.get("series_id") else None,
-                int(s.get("matches")) if s.get("matches") else None,
-                int(s.get("innings")) if s.get("innings") else None,
-                int(s.get("runs")) if s.get("runs") else None,
-                float(s.get("average")) if s.get("average") else None
+                player_id,
+                player_name,
+                format_type,
+                category,
+                None,   # series_id not available in topstats API
+                matches,
+                innings,
+                runs,
+                average
             ))
-            inserted += 1
-        except Exception as e:
-            print(f"⚠️ Skipped one stat row: {e}")
+            inserted_count += 1
 
     conn.commit()
     conn.close()
-    print(f"✅ Inserted {inserted} player stats from {file_path}")
+    print(f"✅ Inserted {inserted_count} rows from {filepath} into player_stats")
 
 
 # for matches
@@ -496,6 +521,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

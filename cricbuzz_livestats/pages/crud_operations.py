@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 
-DB_PATH = "cricket.db"
+DB_PATH = "cricbuzz_livestats/cricket.db"
 
 def run_query(query, params=(), commit=False):
     conn = sqlite3.connect(DB_PATH)
@@ -129,5 +129,6 @@ def show():
             if st.button("Delete"):
                 run_query("DELETE FROM player_stats WHERE rowid=?", (rowid,), commit=True)
                 st.success("✅ Player stat deleted successfully!")
+
 
 

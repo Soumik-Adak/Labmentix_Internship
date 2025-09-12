@@ -22,7 +22,7 @@ if not os.path.exists(DATA_DIR):
 
 # ----------------- DB Initialization -----------------
 def init_db():
-    conn = sqlite3.connect("cricket.db")
+    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
     cur.execute("""
@@ -263,7 +263,7 @@ def get_all_venues():
 def save_venue_to_db(file_name="all_venues.json"):
     """Insert a single venue into the DB"""
     
-    conn = sqlite3.connect("cricket.db")
+    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
     file_path = os.path.join(DATA_DIR, file_name)
@@ -327,7 +327,7 @@ def safe_float(value):
 
 def insert_player_stats_from_topstats(data, stat_type, format_type):
     """Insert player statistics from TopStats API into player_stats table"""
-    conn = sqlite3.connect("cricket.db")
+    conn = sqlite3.connect("cricbuzz_livestats/cricket.db")
     cur = conn.cursor()
 
     headers = data.get("headers", [])
@@ -515,6 +515,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

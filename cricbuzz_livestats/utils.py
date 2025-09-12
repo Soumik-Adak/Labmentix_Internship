@@ -338,6 +338,30 @@ def seed_all_venues():
     print(f"✅ Inserted {len(venues)} venues into DB")
 
 
+def sync_player_stats():
+    """Fetch all available stat types & formats dynamically and insert into player_stats"""
+    stats_list = get_stats_list()
+    if not stats_list:
+        print("❌ No stats list fetched.")
+        return
+
+    # Extract stat types from API response
+    stat_types = []
+    if "statType" in stats_list:  # adjust based on actual API response
+        stat_types = [s.get("id") for s in stats_list["statType"] if s.get("id")]
+
+    # Default formats
+    formats = ["test", "odi", "t20"]
+
+    for stat_type in stat_types:
+        for format_type in formats:
+            print(f"📥 Fetching {stat_type} for {format_type}...")
+            data = fetch_stats(stat_type, format_type)
+            if data and "values" in data:
+                insert_player_stats_from_topstats(data, stat_type, format_type)
+            else:
+                print(f"⚠️ No data for {stat_type} - {format_type}")
+
 def safe_int(value):
     try:
         return int(value.replace(",", "")) if value else None
@@ -359,16 +383,16 @@ def insert_player_stats_from_topstats(data, stat_type, format_type):
 
     for row in players:
         vals = row.get("values", [])
-        if not vals or len(vals) < 6:
+        if not vals:
             continue
 
         # Extract name and ID
-        player_id = safe_int(vals[0])
-        player_name = vals[1]
-        matches = safe_int(vals[2]) 
-        innings = safe_int(vals[3]) 
-        runs = safe_int(vals[4])
-        average = safe_float(vals[5]) 
+        player_id = safe_int(vals[0]) 
+        player_name = vals[1] if len(vals) > 1 else None
+        matches = safe_int(vals[2]) if len(vals) > 2 else None
+        innings = safe_int(vals[3]) if len(vals) > 3 else None
+        runs = safe_int(vals[4]) if len(vals) > 4 else None
+        average = safe_float(vals[5]) if len(vals) > 5 else None
 
         cur.execute("""
         INSERT OR IGNORE INTO player_stats 
@@ -546,6 +570,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

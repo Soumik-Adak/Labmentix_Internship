@@ -329,6 +329,9 @@ def insert_player_stats_from_topstats(file_name="player_stats.json"):
     inserted_count = 0
 
     for stat_type, block in stats_data.items():
+        if not isinstance(block, dict):
+            continue 
+             
         headers = block.get("headers", [])
         values = block.get("values", [])
 
@@ -523,6 +526,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

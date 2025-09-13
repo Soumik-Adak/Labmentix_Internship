@@ -361,7 +361,7 @@ def insert_player_stats_from_topstats(file_name="player_stats.json"):
             """, (
                 player_id,
                 player_name,
-                "test",
+                None,
                 stat_type,
                 None,   # series_id not available in topstats API
                 matches,
@@ -523,6 +523,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

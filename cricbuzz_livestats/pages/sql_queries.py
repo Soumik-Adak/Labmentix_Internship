@@ -322,7 +322,7 @@ def show():
     }
 
     # --- Choose query to run ---
-    query_choice = st.selectbox("📌 Choose a query to run", list(queries.keys()))
+    query_choice = st.selectbox("Choose a query to run", list(queries.keys()))
 
     if st.button("▶️ Run Query"):
         query = queries[query_choice]
@@ -338,6 +338,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

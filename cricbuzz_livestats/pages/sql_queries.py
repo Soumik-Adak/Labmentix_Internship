@@ -125,7 +125,7 @@ def show():
 
         "Q7. Highest individual score per format": """
             SELECT format,
-                   MAX(HS) AS highest_score
+                   MAX(runs) AS highest_score
             FROM player_stats
             GROUP BY format;
         """,
@@ -142,7 +142,7 @@ def show():
                 SUM(COALESCE(pfs.runs,0)) AS total_runs,
                 SUM(COALESCE(pfs.wickets,0)) AS total_wickets,
                 pfs.format
-            FROM player_format_stats pfs
+            FROM player_stats pfs
             JOIN players p ON p.player_id = pfs.player_id
             GROUP BY pfs.player_id, pfs.format
             HAVING SUM(COALESCE(pfs.runs,0)) > 1000
@@ -152,8 +152,8 @@ def show():
 
         "Q10. Last 20 completed matches (most recent first)": """
             SELECT m.match_desc,
-                t1.team_name AS team1,
-                t2.team_name AS team2,
+                m.team1_name AS team1,
+                m.team2_name AS team2,
                 wt.team_name AS winning_team,
                 -- Extract victory margin and type from status when possible, else NULL
                 CASE
@@ -341,6 +341,7 @@ def show():
 
 if __name__ == "__main__":
     show()
+
 
 
 

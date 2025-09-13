@@ -328,21 +328,30 @@ def insert_player_stats_from_topstats(file_name="player_stats.json"):
 
     inserted_count = 0
 
-    for block in stats_data.values():
+    for stat_type, block in stats_data.items():
         if not isinstance(block, dict):
             continue 
              
+        headers = block.get("headers", [])
         values = block.get("values", [])
 
         for row in values:
+            if not isinstance(row, dict):
+                continue 
             vals = row.get("values", [])
-            if not vals:
+            if not vals or len(vals) < 2:
                 continue
+
+            player_id = None
+            try:
+                if vals[0].isdigit():
+                    player_id = int(vals[0])
+            except Exception:
+                pass
 
             
 
             # player_id sometimes missing → set None
-            player_id = int(vals[0]) if vals[0].isdigit() else None
             player_name = vals[1] if len(vals) > 1 else None
 
             matches = int(vals[2]) if len(vals) > 2 and vals[2].isdigit() else None
@@ -361,8 +370,8 @@ def insert_player_stats_from_topstats(file_name="player_stats.json"):
             """, (
                 player_id,
                 player_name,
-                None,
-                None,
+                block.get("filter", {}).get("selectedMatchType"),
+                stat_type,
                 None,   # series_id not available in topstats API
                 matches,
                 innings,
@@ -523,6 +532,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

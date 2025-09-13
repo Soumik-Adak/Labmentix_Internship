@@ -9,7 +9,7 @@ init_db()
 
 # Sidebar navigation
 st.sidebar.title("📌 Navigation")
-page = st.sidebar.radio("Go to:", ["🏠 Home", "📺 Live Matches", "🌟 Top Players", "SQL Queries", "CRUD Operations"])
+page = st.sidebar.radio("Go to:", ["🏠 Home", "📺 Live Matches", "🌟 Top Players", "📊 SQL Queries", "⚙️ CRUD Operations"])
 
 # Route pages
 if page == "🏠 Home":
@@ -21,9 +21,10 @@ elif page == "📺 Live Matches":
 elif page == "🌟 Top Players":
     top_stats.show()
 
-elif page == "SQL Queries":
+elif page == "📊 SQL Queries":
     sql_queries.show()
 
-elif page == "CRUD Operations":
+elif page == "⚙️ CRUD Operations":
     crud_operations.show()
+
 

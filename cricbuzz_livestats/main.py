@@ -8,8 +8,8 @@ from pages import home, live_matches, top_stats, sql_queries, crud_operations
 init_db()
 
 # Sidebar navigation
-st.sidebar.title("📌 Navigation")
-page = st.sidebar.radio("Go to:", ["🏠 Home", "📺 Live Matches", "🌟 Top Players", "📊 SQL Queries", "⚙️ CRUD Operations"])
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to:", ["🏠 Home", "📺 Live Matches", "🌟 Top Players", "📊 SQL Queries", "🛠️ CRUD Operations"])
 
 # Route pages
 if page == "🏠 Home":
@@ -24,8 +24,9 @@ elif page == "🌟 Top Players":
 elif page == "📊 SQL Queries":
     sql_queries.show()
 
-elif page == "⚙️ CRUD Operations":
+elif page == "🛠️ CRUD Operations":
     crud_operations.show()
+
 
 
 

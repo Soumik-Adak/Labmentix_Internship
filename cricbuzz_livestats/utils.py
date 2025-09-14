@@ -4,7 +4,7 @@ import streamlit as st
 import json
 import os
 
-API_KEY = "13c92f16f8msh3cc3f324fca2fdep11155djsn7ee675a36724"
+API_KEY = "46fbf1ceedmsh16f5991ffb1d123p1c0680jsn26f84197b93f"
 HOST = "cricbuzz-cricket.p.rapidapi.com"
 
 headers = {
@@ -532,6 +532,7 @@ def show_live_match(match):
                 wickets = inng.get("wickets", 0)
                 overs = inng.get("overs", 0.0)
                 st.markdown(f"**{team_name}:** {runs}/{wickets} in {overs} overs")
+
 
 
 

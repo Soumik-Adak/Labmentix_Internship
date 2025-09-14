@@ -41,7 +41,7 @@ def show():
     # --- Project Documentation ---
     st.header("📄 Project Documentation")
     st.markdown("""
-    📘 [Click here to view full project report](project_report.pdf)  
+    📘 [Click here to view full project report](cricbuzz_livestats/project_report.pdf)  
     """)
 
     # --- Folder Structure ---
@@ -66,5 +66,6 @@ def show():
     """)
 
     st.success("✅ Welcome! Use the sidebar to explore cricket stats.")
+
 
 

@@ -2,7 +2,7 @@ import streamlit as st
 from utils import init_db
 
 # Import your page modules
-from pages import home, live_matches, top_stats, sql_queries, crud_operations
+from pages import home, live_matches, top_stats, crud_operations
 
 # Initialize DB
 init_db()
@@ -26,5 +26,6 @@ elif page == "📊 SQL Queries":
 
 elif page == "⚙️ CRUD Operations":
     crud_operations.show()
+
 
 

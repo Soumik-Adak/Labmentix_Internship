@@ -38,5 +38,20 @@ A **Streamlit-based cricket analytics dashboard** that connects with **Cricbuzz 
 
 <details>
 <summary>Click to expand 📂</summary>
-
+cricbuzz_livestats/
+├── main.py # Streamlit entry point
+├── utils.py # Database + API helpers
+├── pages/ # Multi-page Streamlit structure
+│ ├── home.py
+│ ├── live_matches.py
+│ ├── top_stats.py
+│ ├── sql_queries.py
+│ ├── crud_operations.py
+├── data/ # JSON data files
+│ ├── all_team_players.json
+│ ├── all_venues.json
+│ ├── recent_matches.json
+│ ├── player_stats.json
+├── cricket.db # SQLite database
+└── Project_report.pdf # Full project report
 

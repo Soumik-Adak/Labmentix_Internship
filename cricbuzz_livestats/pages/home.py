@@ -34,8 +34,7 @@ def show():
     - 📊 **Live Matches** → View live match details  
     - 🌟 **Top Players Stats** → Explore batting & bowling records  
     - 🗂 **SQL Queries** → Run SQL queries on cricket data  
-    - ✏️ **CRUD Operations** → Insert, update, and delete records  
-    - 🏟 **Venues** → Explore cricket grounds and stats  
+    - ✏️ **CRUD Operations** → Insert, update, and delete records    
     """)
 
     # --- Project Documentation ---
@@ -66,6 +65,7 @@ def show():
     """)
 
     st.success("✅ Welcome! Use the sidebar to explore cricket stats.")
+
 
 
 

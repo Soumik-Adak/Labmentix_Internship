@@ -43,7 +43,7 @@ Using **SQL, Power BI, and Streamlit**, I transformed raw data into **business i
 - **Ride Distance Distribution (Bar Chart):** Premium rides cover longer distances, budget rides short commutes.
 
 ### 📷 Dashboard Screenshot  
-![Power BI Dashboard](1.png,2.png,3.png,4.png,5.png) 
+![Power BI Dashboard](1.png) 
 
 ---
 

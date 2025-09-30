@@ -1,6 +1,6 @@
 # 🚖 Ola Ride Insights – Data Analytics Project  
 
-![Dashboard Preview]([assets/demo.png](https://github.com/Soumik-Adak/Labmentix_Internship/blob/main/OLA_Project/demo.png)) <!-- Replace with actual screenshot path -->
+![Dashboard Preview](demo.png)) <!-- Replace with actual screenshot path -->
 
 ## 📌 Project Overview  
 This project analyzes **Ola ride booking data** to uncover insights into **bookings, cancellations, revenue, and ratings**.  
@@ -40,7 +40,10 @@ Using **SQL, Power BI, and Streamlit**, I transformed raw data into **business i
 - **Revenue by Payment Method (Bar Chart):** UPI & Cash dominate transactions.  
 - **Ratings by Vehicle Type (Grouped Bar):** Premium rides rated higher than budget rides.  
 - **Cancellation Reasons (Pie Charts):** Customers → change of plans; Drivers → personal/car issues.  
-- **Ride Distance Distribution (Bar Chart):** Premium rides cover longer distances, budget rides short commutes.  
+- **Ride Distance Distribution (Bar Chart):** Premium rides cover longer distances, budget rides short commutes.
+
+### 📷 Dashboard Screenshot  
+![Power BI Dashboard](powerbi_dashboard.png) 
 
 ---
 
@@ -50,10 +53,4 @@ The app has two modes:
 1. **Dashboard Mode** – KPIs and charts with filters for date, vehicle type, payment, and status.  
 2. **SQL Explorer** – Dropdown to run predefined SQL queries and preview results dynamically.  
 
-### Run Locally  
-```bash
-git clone https://github.com/your-username/ola-ride-insights.git
-cd ola-ride-insights
-pip install -r requirements.txt
-streamlit run app.py
 

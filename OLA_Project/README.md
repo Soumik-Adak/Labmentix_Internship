@@ -1,6 +1,6 @@
 # 🚖 Ola Ride Insights – Data Analytics Project  
 
-![Dashboard Preview](assets/demo.png) <!-- Replace with actual screenshot path -->
+![Dashboard Preview]([assets/demo.png](https://github.com/Soumik-Adak/Labmentix_Internship/blob/main/OLA_Project/demo.png)) <!-- Replace with actual screenshot path -->
 
 ## 📌 Project Overview  
 This project analyzes **Ola ride booking data** to uncover insights into **bookings, cancellations, revenue, and ratings**.  

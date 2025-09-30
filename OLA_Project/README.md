@@ -42,8 +42,22 @@ Using **SQL, Power BI, and Streamlit**, I transformed raw data into **business i
 - **Cancellation Reasons (Pie Charts):** Customers → change of plans; Drivers → personal/car issues.  
 - **Ride Distance Distribution (Bar Chart):** Premium rides cover longer distances, budget rides short commutes.
 
-### 📷 Dashboard Screenshot  
-![Power BI Dashboard](1.png) 
+## 📊 Power BI Dashboards
+
+### Tab 1 – Overview
+![Overview Dashboard](1.png)
+
+### Tab 2 – Vehicle Type
+![Overview Dashboard](2.png)
+
+### Tab 3 – Revenue Insights
+![Revenue Dashboard](3.png)
+
+### Tab 4 – Cancellations
+![Cancellations Dashboard](4.png)
+
+### Tab 4 – Ratings
+![Ratings Dashboard](5.png)
 
 ---
 

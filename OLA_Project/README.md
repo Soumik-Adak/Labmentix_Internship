@@ -1,6 +1,6 @@
 # 🚖 Ola Ride Insights – Data Analytics Project  
 
-![Dashboard Preview](demo.png)) <!-- Replace with actual screenshot path -->
+
 
 ## 📌 Project Overview  
 This project analyzes **Ola ride booking data** to uncover insights into **bookings, cancellations, revenue, and ratings**.  
@@ -43,7 +43,7 @@ Using **SQL, Power BI, and Streamlit**, I transformed raw data into **business i
 - **Ride Distance Distribution (Bar Chart):** Premium rides cover longer distances, budget rides short commutes.
 
 ### 📷 Dashboard Screenshot  
-![Power BI Dashboard](powerbi_dashboard.png) 
+![Power BI Dashboard](Dashboard) 
 
 ---
 
@@ -51,6 +51,9 @@ Using **SQL, Power BI, and Streamlit**, I transformed raw data into **business i
 The app has two modes:  
 
 1. **Dashboard Mode** – KPIs and charts with filters for date, vehicle type, payment, and status.  
-2. **SQL Explorer** – Dropdown to run predefined SQL queries and preview results dynamically.  
+2. **SQL Explorer** – Dropdown to run predefined SQL queries and preview results dynamically.
+
+### 📷 Dashboard Screenshot  
+![Dashboard Preview](demo.png)) <!-- Replace with actual screenshot path -->
 
 

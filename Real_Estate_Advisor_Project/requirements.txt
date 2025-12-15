@@ -1,0 +1,22 @@
+# Core Python libraries
+numpy
+pandas
+
+# Machine Learning
+scikit-learn
+
+# Visualization
+matplotlib
+seaborn
+
+# Streamlit for UI
+streamlit
+
+# Experiment tracking
+mlflow
+
+# Optional: for better plots and interactivity
+plotly
+
+# Optional: for data preprocessing and utilities
+scipy

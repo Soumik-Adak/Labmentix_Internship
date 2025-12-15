@@ -30,7 +30,7 @@ It classifies properties as *Good Investment* or *Not Recommended*, predicts fut
 
 ## 📂 Project Structure
 # real_estate_app/ 
-├── app.py             Main entry point
+├── app.py             # Main entry point
 ├── src/    
 ├── home.py            Home page   
 ├── eda.py             Exploratory Data Analysis  

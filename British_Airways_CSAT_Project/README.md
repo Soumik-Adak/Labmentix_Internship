@@ -38,8 +38,9 @@ To help airline stakeholders:
 
 ## 🛠 Tools & Technologies
 - **Power BI**
-- **DAX Measures**
+- **Power Query Editor**
 - **Data Modeling**
+- **DAX**
 - **Data Cleaning & Transformation**
 - **Interactive Visualizations**
 
@@ -56,9 +57,8 @@ To help airline stakeholders:
 ---
 
 ## 📂 Dataset
-- Passenger review and rating data
-- Time period: 2016 – 2023
-- Metrics include service ratings, aircraft types, seat class, traveler type, and geography
+- Reviews Data
+- Country Data
 
 ---
 
@@ -79,5 +79,4 @@ Special thanks to **Labmentix** for providing structured guidance, mentorship, a
 ## 👤 Author
 **Soumik Adak**  
 Aspiring Data Analyst | Power BI | Python | SQL  
-📌 Open to Data Analyst & Business Analyst roles
 

@@ -1,5 +1,9 @@
 # 🎾 Tennis Analytics Dashboard  
-### Unlocking Tennis Data with API • MySQL • Streamlit
+
+![Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B?logo=streamlit&logoColor=white)  
+![SQLite](https://img.shields.io/badge/Database-MySQL-07405E?logo=sqlite&logoColor=white)  
+![Python](https://img.shields.io/badge/Language-Python-3776AB?logo=python&logoColor=white)  
+![API](https://img.shields.io/badge/API-Tennis%20(SportsRaderAPI)-0096FF?logo=cricket&logoColor=white)  
 
 An end-to-end data analytics project that transforms raw tennis data from the SportRadar API into a structured MySQL database and an interactive Streamlit dashboard. This project demonstrates real-world data engineering, SQL analytics, and visualization workflow — from extraction to insight.
 
@@ -63,6 +67,26 @@ The goal is not just visualization — but building a **complete analytics pipel
 - Views created for dashboard consumption  
 
 ---
+## 📂 Project Structure  
+
+tennis_analytics/
+├── app.py # Streamlit entry point
+├── utils.py # Database + API helpers
+├── pages/ # Multi-page Streamlit structure
+│ ├── home.py
+│ ├── live_matches.py
+│ ├── top_stats.py
+│ ├── sql_queries.py
+│ ├── crud_operations.py
+├── data/ # JSON data files
+│ ├── all_team_players.json
+│ ├── all_venues.json
+│ ├── recent_matches.json
+│ ├── player_stats.json
+├── cricket.db # SQLite database
+└── Project_report.pdf # Full project report
+
+---
 
 ## 📊 Key Analytical Insights
 - Ranking points distribution is highly skewed  
@@ -81,7 +105,8 @@ The goal is not just visualization — but building a **complete analytics pipel
 - Duplicate record handling  
 - Join row count mismatches  
 - View vs query architecture refactor  
-- UI readability vs chart density balance  
+- UI readability vs chart density balance
+
 
 ---
 
@@ -91,3 +116,6 @@ The goal is not just visualization — but building a **complete analytics pipel
 ```bash
 git clone <your-repo-url>
 cd tennis-analytics-dashboard
+
+
+

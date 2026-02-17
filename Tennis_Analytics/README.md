@@ -1,121 +1,271 @@
-# 🎾 Tennis Analytics Dashboard  
+# 🎾 Tennis Analytics Intelligence Platform  
 
-![Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B?logo=streamlit&logoColor=white)  
-![SQLite](https://img.shields.io/badge/Database-MySQL-07405E?logo=sqlite&logoColor=white)  
+![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-FF4B4B?logo=streamlit&logoColor=white)  
+![MySQL](https://img.shields.io/badge/Database-MySQL-07405E?logo=mysql&logoColor=white)  
 ![Python](https://img.shields.io/badge/Language-Python-3776AB?logo=python&logoColor=white)  
-![API](https://img.shields.io/badge/API-Tennis%20(SportsRaderAPI)-0096FF?logo=cricket&logoColor=white)  
-
-An end-to-end data analytics project that transforms raw tennis data from the SportRadar API into a structured MySQL database and an interactive Streamlit dashboard. This project demonstrates real-world data engineering, SQL analytics, and visualization workflow — from extraction to insight.
-
----
-
-## 🚀 Project Overview
-
-The Tennis Analytics Dashboard is built to collect, structure, analyze, and visualize professional tennis competition and ranking data. Raw JSON data is fetched from an external API, cleaned and normalized into relational tables, and then explored through an interactive multi-page dashboard.
-
-The goal is not just visualization — but building a **complete analytics pipeline**:  
-**API → Data Cleaning → Schema Design → SQL Analytics → Interactive Dashboard → Insights**
+![API](https://img.shields.io/badge/Data-API%20Integration-0096FF?logo=fastapi&logoColor=white)  
+![Analytics](https://img.shields.io/badge/Focus-Data%20Analytics-8A2BE2)
 
 ---
 
-## 🧱 Tech Stack
+## 📌 Executive Summary
 
-- **Python** — Data extraction & processing  
-- **MySQL** — Relational database & analytics queries  
-- **SQL Views** — Reusable analytical layer  
-- **Streamlit** — Interactive dashboard UI  
-- **Pandas** — Data handling  
-- **Plotly** — Interactive charts  
-- **Requests** — API integration  
+The **Tennis Analytics Intelligence Platform** is a full-stack data analytics solution that transforms raw tennis data from an external API into structured, business-ready insights through a scalable database architecture and an interactive dashboard.
+
+This project demonstrates a complete analytics workflow:
+
+> **API → Data Engineering → Relational Modeling → SQL Analytics → Interactive Dashboard → Business Insights**
+
+It simulates a real-world sports analytics use case where stakeholders require structured performance intelligence and competitive insights.
 
 ---
 
-## 📂 Project Features
+# 💼 Business Problem
 
-### ✅ Data Engineering
-- API data extraction scripts  
-- JSON parsing with null-safe handling  
-- Clean field mapping  
-- Deduplication using keys  
+Raw sports data is:
+
+- Highly nested (JSON format)
+- Inconsistent across endpoints
+- Not directly usable for analysis
+- Difficult to convert into strategic insights
+
+Stakeholders such as:
+
+- Sports Analysts  
+- Tournament Organizers  
+- Performance Strategists  
+- Talent Scouts  
+
+need answers to questions like:
+
+- Which countries dominate rankings?
+- Does higher participation mean stronger performance?
+- Which players are rapidly improving?
+- How competitive is the ranking distribution?
+
+This project bridges the gap between raw data and decision-making insights.
+
+---
+
+# 🚀 Business Outcomes & Impact
+
+## 📊 1. Country Performance Intelligence
+- Identified mismatch between participation volume and actual performance strength  
+- Highlighted high-efficiency countries (fewer players, higher average points)  
+- Enabled comparative performance benchmarking  
+
+## 🏆 2. Competitive Landscape Analysis
+- Revealed ranking concentration among elite players  
+- Identified dominance clusters  
+- Detected performance gaps between tiers  
+
+## 📈 3. Momentum Tracking
+- Ranking movement analysis detects rising players  
+- Helps identify breakout talent early  
+
+## 🧠 4. Data-Driven Decision Support
+- KPI visualization simplifies complex ranking structures  
+- Drill-down capability enhances exploratory analysis  
+- SQL views provide reusable analytical logic  
+
+## ⚙️ 5. Scalable Data Architecture
 - Normalized relational schema  
-- Foreign key relationships  
-
-### ✅ Database Design
-- Competitors table  
-- Rankings table  
-- Competitions hierarchy  
-- Categories mapping  
-- Complexes & venues structure  
-- Analytical SQL views for dashboard queries  
-
-### ✅ Dashboard Modules
-- 🏠 **Homepage** → KPIs, overview metrics  
-- 👤 **Competitor Details** → Player drill-down view  
-- 🌍 **Country Analysis** → Competitor count, avg points, scatter plots, share distribution  
-- 🏆 **Leaderboards** → Medal-style Top 3, Top N chart, rising players, country strength  
-- 🔍 **Search & Filter** → Search by name, country, ranking range, points, movement  
-- 🧾 **SQL Query Explorer** → Prebuilt queries, results preview, learning support  
+- Hierarchical competition modeling  
+- Modular SQL view layer for abstraction  
+- Clean separation between raw and analytical layers  
 
 ---
 
-## 🗄️ Database Schema Highlights
-- Fully normalized relational design  
-- One-to-many and self-join relationships  
-- Ranking separated from competitor identity  
-- Competition parent–child hierarchy  
-- Lookup tables for categories  
-- Views created for dashboard consumption  
+# 🏗️ System Architecture
+
+```
+SportRadar API
+        ↓
+Python ETL (Requests + Pandas)
+        ↓
+MySQL Relational Database
+        ↓
+SQL Views (Analytics Layer)
+        ↓
+Streamlit Interactive Dashboard
+        ↓
+Business Insights
+```
 
 ---
-## 📂 Project Structure  
 
+# 🧱 Tech Stack
+
+| Layer | Technology |
+|--------|------------|
+| Data Extraction | Python, Requests |
+| Data Processing | Pandas |
+| Database | MySQL |
+| Query Layer | Advanced SQL + Views |
+| Visualization | Streamlit |
+| Charts | Plotly |
+| Architecture | Normalized Relational Schema |
+
+---
+
+# 🗄️ Database Design Highlights
+
+- Fully normalized schema (3NF principles)
+- Separation of static (Competitors) and dynamic (Rankings) entities
+- Parent–child hierarchy using self-joins
+- Foreign key integrity enforcement
+- Analytical SQL views for dashboard queries
+- Optimized joins for performance
+
+---
+
+# 📊 Dashboard Modules
+
+## 🏠 Homepage
+- Global KPIs
+- Summary metrics
+- Overview insights
+
+## 👤 Competitor Analysis
+- Player drill-down
+- Ranking breakdown
+- Country mapping
+- Performance comparison
+
+## 🌍 Country Intelligence
+- Competitor distribution
+- Average points by country
+- Efficiency vs volume comparison
+- Scatter-based performance clustering
+
+## 🏆 Leaderboards
+- Medal-style Top 3 display
+- Top N ranking visualization
+- Ranking movement tracking
+- Country dominance insights
+
+## 🔍 Search & Filter Engine
+Dynamic filtering by:
+- Player name
+- Country
+- Ranking range
+- Points range
+- Movement indicator
+
+## 🧾 SQL Query Explorer
+- Pre-built analytical queries
+- Learning-oriented SQL structure
+- Live result preview
+
+---
+
+# 📈 Key Analytical Findings
+
+- Ranking points distribution is highly skewed
+- Elite players significantly influence averages
+- Participation depth does not equal performance strength
+- Country efficiency varies widely
+- High participation does not guarantee top ranking
+- Competitive dominance is concentrated within small clusters
+
+---
+
+# ⚠️ Technical Challenges & Solutions
+
+| Challenge | Solution |
+|------------|-----------|
+| Nested API JSON | Structured parsing with safe extraction |
+| Missing fields | Null-safe handling |
+| Duplicate records | Primary key enforcement |
+| SQL keyword conflicts | Aliasing strategy |
+| Join inconsistencies | Foreign key validation |
+| Query repetition | SQL view abstraction |
+| UI clutter | Balanced KPI & visualization design |
+
+---
+
+# 📂 Project Structure
+
+```
 tennis_analytics/
-├── app.py # Streamlit entry point
-├── utils.py # Database + API helpers
-├── pages/ # Multi-page Streamlit structure
-│ ├── home.py
-│ ├── live_matches.py
-│ ├── top_stats.py
-│ ├── sql_queries.py
-│ ├── crud_operations.py
-├── data/ # JSON data files
-│ ├── all_team_players.json
-│ ├── all_venues.json
-│ ├── recent_matches.json
-│ ├── player_stats.json
-├── cricket.db # SQLite database
-└── Project_report.pdf # Full project report
+├── app.py
+├── db_connection.py
+├── ranking_api.py
+├── pages/
+│   ├── home.py
+│   ├── competitor.py
+│   ├── country.py
+│   ├── leaderboards.py
+│   ├── search_filter.py
+│   ├── sql_explorer.py
+├── sql/
+│   ├── competition_query.sql
+│   ├── competitors_query.sql
+│   ├── venues_query.sql
+├── requirements.txt
+└── README.md
+```
 
 ---
 
-## 📊 Key Analytical Insights
-- Ranking points distribution is highly skewed  
-- Country depth ≠ country performance strength  
-- Few elite players heavily influence averages  
-- Ranking movement is a strong momentum indicator  
-- Participation volume does not guarantee high points  
-- Performance efficiency varies widely by country  
+# 🛠️ Installation & Setup
 
----
-
-## ⚠️ Challenges Solved
-- Inconsistent API field structures  
-- Missing nested JSON values  
-- SQL reserved keyword conflicts  
-- Duplicate record handling  
-- Join row count mismatches  
-- View vs query architecture refactor  
-- UI readability vs chart density balance
-
-
----
-
-## 🛠️ Installation & Setup
-
-### 1️⃣ Clone Project
+## 1️⃣ Clone Repository
 ```bash
 git clone <your-repo-url>
 cd tennis-analytics-dashboard
+```
 
+## 2️⃣ Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
+## 3️⃣ Run Application
+```bash
+streamlit run app.py
+```
 
+---
+
+# 🎯 Skills Demonstrated
+
+✔ API Integration & ETL Design  
+✔ Advanced SQL & Query Optimization  
+✔ Relational Database Modeling  
+✔ Dashboard UI/UX Design  
+✔ Business Insight Generation  
+✔ Data Cleaning & Validation  
+✔ Analytical Thinking  
+
+---
+
+# 💡 Why This Project Stands Out
+
+Unlike basic dashboard projects, this solution:
+
+- Builds the full data pipeline from scratch  
+- Uses relational modeling best practices  
+- Separates raw, transformed, and analytical layers  
+- Focuses on business impact, not just visuals  
+- Demonstrates real-world data engineering capability  
+
+This reflects skills required for:
+
+- Data Analyst  
+- Business Intelligence Analyst  
+- Junior Data Engineer  
+- Analytics Consultant  
+
+---
+
+# 👨‍💻 Author
+
+**Soumik Adak**  
+M.Sc. in IT(Data Science)  
+Skilled in Python, SQL, Power BI & Data Engineering  
+  
+
+---
+
+⭐ If you found this project interesting, feel free to explore, fork, or connect!
